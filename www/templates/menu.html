@@ -1,0 +1,104 @@
+<ion-side-menus enable-menu-with-back-views="false">
+
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear icon-google-search" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+
+            <ion-nav-buttons side="right">
+                <button class="button button-icon button-clear icon-google-menu" menu-toggle="right">
+                </button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left">
+        <ion-content>
+            <div class="header-bar">
+                <img ng-src="img/logo_company.png" class="menu-logo">
+            </div>
+
+            <div class="search-box">
+
+                <div ng-controller="SearchCategoryCtrl" ng-init="init();">
+                    <div catauto-complete url="/api/v1/categories" category-info="categories"></div>
+                </div>
+
+                <div ng-controller="SearchCityCtrl" ng-init="init();" class="margin-top-xs">
+                    <div cityauto-complete url="/api/v1/categories" city-info="cities"></div>
+                </div>
+
+                <div class="margin-top-xs text-center padding-top-xs padding-bottom-sm">
+                    <a ng-click="showSearchView('/app/search')"  menu-close class="search-button">
+                        <i class="fa-search i-menu color-white"></i> <b class="color-white">Search</b>
+                    </a>
+                </div>
+
+                <hr>
+
+                <div class="margin-top-xs padding-top-sm" ng-controller="SearchMenuCtrl" ng-init="init();">
+                    <div ng-repeat="item in items" class="margin-bottom-xs">
+                        <a href="#" ng-model="item.id" ng-click="item.id=!item.id" class="search-menu-item"><i class="fa-chevron-right color-white small-icon"></i> {{ item.title }}</a>
+                        <div ng-show="!item.id" class="padding-left">
+                            <div ng-repeat="subitem in item.subItems" class="margin-top-xs">
+                                <a ng-click="showSearchView('/app/search', '{{ subitem.title }}')" class="search-menu-item" menu-close><i class="fa-caret-right color-white small-icon"></i> {{ subitem.title }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ion-content>
+
+    </ion-side-menu>
+
+
+    <!-- Right menu -->
+    <ion-side-menu side="right" class="menu-right">
+        <ion-content>
+            <ion-list ng-if="userId == 0" class="user-menu">
+                <ion-item menu-close href="#/app/playlists" menu-close>
+                    <i class="fa-home color-white menu-icon"></i> <label class="menu-text">Home</label>
+                </ion-item>
+                <ion-item menu-close ng-click="login()">
+                    <i class="fa-sign-in color-white menu-icon"></i> <label class="menu-text">Login</label>
+                </ion-item>
+                <ion-item menu-close ng-click="register()">
+                    <i class="fa-edit color-white menu-icon"></i> <label class="menu-text">Register</label>
+                </ion-item>
+            </ion-list>
+
+            <div ng-if="userId != 0">
+                <div class="user-image-box">
+                    <img ng-src="{{ userPhoto }}" class="user-image">
+                </div>
+
+                <div class="margin-top-xs text-center margin-bottom-sm">
+                    <div class="menu-user-name">Welcome <b>{{ userName }}</b>!</div>
+                </div>
+
+                <ion-list class="user-menu">
+                    <ion-item menu-close href="#/app/playlists" menu-close>
+                        <i class="fa-home color-white menu-icon"></i> <label class="menu-text">Home</label>
+                    </ion-item>
+                    <ion-item menu-close href="#/app/cart" menu-close>
+                        <i class="fa-shopping-cart color-white menu-icon"></i> <label class="menu-text">Cart</label>
+                    </ion-item>
+                    <ion-item menu-close ng-click="profile()">
+                        <i class="fa-gear color-white menu-icon"></i> <label class="menu-text">Profile</label>
+                    </ion-item>
+                    <ion-item menu-close ng-click="doLogOut()" menu-close>
+                        <i class="fa-sign-out color-white menu-icon"></i> <lable  class="menu-text">Sign Out</lable>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

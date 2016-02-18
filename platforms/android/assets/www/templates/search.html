@@ -1,0 +1,43 @@
+<ion-view view-title="Search">
+    <ion-content id="list" class="">
+        <ion-item ng-repeat="store in storeLists" class="store-item-box" href="#/app/playlists/{{store.id}}" style="border: 0px;">
+            <img ng-src="{{ store.photo }}" class="store-item-photo">
+            <div class="store-item-content">
+                <div class="store-item-main">
+                    <div class="store-item-name">{{ store.name }}</div>
+                    <p class="color-white" style="margin-bottom: 0px; margin-left: 10px;"><i class="fa-map-marker color-white"></i> {{ store.address }}</p>
+                    <rating ng-model="store.rating" max="5" class="featured-store-rating"></rating>
+                    <div class="overlay"></div>
+                </div>
+                <div class="store-item-other">
+                    <p class="color-white" style="margin-bottom: 0px;"><i class="fa-phone color-white"></i> {{ store.phone }}</p>
+                    <p class="color-white" style="margin-bottom: 0px;"><i class="fa-clock-o color-white"></i> {{ store.opening_time }}</p>
+                </div>
+            </div>
+        </ion-item>
+
+        <div class="card margin-top-sm text-center" ng-if="searchCount == 0">
+            <div class="item item-text-wrap">
+                There are no search results.
+            </div>
+        </div>
+    </ion-content>
+
+    <ion-content id="searchMap" class="ng-hide">
+        <div id="map" data-tap-disabled="true" class="search-map"></div>
+    </ion-content>
+
+
+    <div class="tabs tabs-icon-top" ng-if="searchCount > 0">
+        <a class="tab-item active" ng-click="showList();" id="a-list">
+            <i class="icon ion-navicon-round"></i>
+            List
+        </a>
+        <a class="tab-item" ng-click="showMap();" id="a-map">
+            <i class="icon ion-ios-location"></i>
+            Map
+        </a>
+    </div>
+
+
+</ion-view>

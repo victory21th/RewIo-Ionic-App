@@ -1,0 +1,34 @@
+<ion-modal-view>
+    <ion-header-bar style="background-color: #E6400C;">
+        <h1 class="title color-white">Profile</h1>
+        <div class="buttons">
+            <button class="button button-clear color-white" ng-click="closeProfile()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+
+        <div class="margin-top-lg text-center login-title margin-bottom-sm">
+            User Profile
+        </div>
+
+        <form ng-submit="doUpdate()">
+            <div class="list login-form">
+                <label class="item item-input">
+                    <input type="text" ng-model="profileData.name" class="login-input" placeholder="Name">
+                </label>
+                <label class="item item-input">
+                    <input type="email" ng-model="profileData.email" class="login-input" placeholder="Email">
+                </label>
+                <label class="item item-input">
+                    <input type="password" ng-model="profileData.password" class="login-input" placeholder="Password">
+                </label>
+                <label class="item item-input">
+                    <input type="tel" ng-model="profileData.phone" class="login-input" placeholder="Phone">
+                </label>
+                <label class="item" style="text-align: center;">
+                    <button class="login-button" type="submit">Update <i class="fa-check-circle-o color-white"></i> </button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,19 @@
+<ion-view view-title="Directory Service" ng-controller="PlaylistsCtrl" ng-init="init();">
+    <ion-content>
+        <ion-item ng-repeat="store in storeLists" class="store-item-box" href="#/app/playlists/{{store.id}}" style="border: 0px;">
+            <img ng-src="{{ store.photo }}" class="store-item-photo">
+            <div class="store-item-content">
+                <div class="store-item-main">
+                    <div class="store-item-name">{{ store.name }}</div>
+                    <p class="color-white" style="margin-bottom: 0px; margin-left: 10px;"><i class="fa-map-marker color-white"></i> {{ store.address }}</p>
+                    <rating ng-model="store.rating" max="5" class="featured-store-rating"></rating>
+                    <div class="overlay"></div>
+                </div>
+                <div class="store-item-other">
+                    <p class="color-white" style="margin-bottom: 0px;"><i class="fa-phone color-white"></i> {{ store.phone }}</p>
+                    <p class="color-white" style="margin-bottom: 0px;"><i class="fa-clock-o color-white"></i> {{ store.opening_time }}</p>
+                </div>
+            </div>
+        </ion-item>
+    </ion-content>
+</ion-view>
